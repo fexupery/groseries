@@ -1,5 +1,17 @@
+{% if user.is_authenticated %}
+<h2>Hola {{ user.username }}</h2>
 
-<h1>Hola mundo</h1>
+<form action="{% url 'groseriesapp:logoutuser' %}" method="post">
+  {% csrf_token %}
+  <button type="submit" name="logoutbtn">logout</button>
+</form>
+
+{% else %}
+<a href="{% url 'groseriesapp:loginuser' %}">login</a>
+
+{% endif %}
+
+<h1>Mercando</h1>
 
 {% block content %}
 

@@ -1,0 +1,11 @@
+{% extends 'groseries/base.html' %}
+
+
+{% block content %}
+<h2>{{ error }}</h2>
+<form class=""  method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" name="loginbtn">login</button>
+</form>
+{% endblock %}
