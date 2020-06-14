@@ -3,12 +3,19 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .models import Category
+from .models import Category, Product
 
 
 def all_groseries(request):
-    categories = Category.objects.all()
-    return render(request,'groseries/groserieslist.html',{'categories':categories})
+    products = Product.objects.all()
+    shopping_list =  {}
+    for product in products:
+        if product.category not in shopping_list:
+            shopping_list[product.category] = []
+        shopping_list[product.category].append(product)
+
+
+    return render(request,'groseries/groserieslist.html',{'shopping_list':shopping_list})
 
 def signupuser(request):
     if request.method == 'GET':
