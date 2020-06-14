@@ -2,5 +2,7 @@
 
 
 {% block content %}
-lista del mercado
+{% for category in categories %}
+<h3>{{category.name}}</h3>
+{% endfor %}
 {% endblock %}

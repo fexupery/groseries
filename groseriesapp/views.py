@@ -3,10 +3,12 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from .models import Category
 
 
 def all_groseries(request):
-    return render(request,'groseries/groserieslist.html')
+    categories = Category.objects.all()
+    return render(request,'groseries/groserieslist.html',{'categories':categories})
 
 def signupuser(request):
     if request.method == 'GET':
