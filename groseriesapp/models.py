@@ -11,11 +11,12 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    brand = models.CharField(max_length=100)
-    presentation = models.CharField(max_length=100)
+    brand = models.CharField(max_length=100, blank=True)
+    presentation = models.CharField(max_length=100, blank=True)
     isBought = models.BooleanField(default=False)
     category = models.ForeignKey(Category, null= True, on_delete=models.SET_NULL)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
+    quantity = models.CharField(max_length=10, default=0)
 
     def __str__(self):
         return self.name + ' '+self.brand
