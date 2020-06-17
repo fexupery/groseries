@@ -3,16 +3,22 @@
 
 {% block content %}
 {% for category, value in shopping_list.items %}
-<h3>{{category}}</h3>
-<dl>
+<div class="card" style="width: 18rem;">
+  <img src="https://fitnesspell.com/wp-content/uploads/2018/06/dairy.png" class="card-img-top" alt="...">
+   <div class="card-body">
+  <h5 class="card-title">{{category}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
   {% for product in value %}
-  <dt>
-    <input type="checkbox" name="" value="">
-    {{product.name}}
-  </dt>
-  <dd>{{ product.brand}} - {{ product.presentation}}</dd>
-  <dd>cantidad: {{ product.quantity}}</dd>
+    <li class="list-group-item">
+      <input type="checkbox" name="" value="">
+      {{product.name}}<br/>
+    {{ product.brand}} - {{ product.presentation}}<br/>
+    cantidad: {{ product.quantity}}
+    </li>
   {% endfor %}
-</dl>
+  </ul>
+
+</div></br>
 {% endfor %}
 {% endblock %}

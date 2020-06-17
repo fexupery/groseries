@@ -1,9 +1,12 @@
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
 {% if user.is_authenticated %}
-<h2>Hola {{ user.username }}</h2>
+Hola {{ user.username }}
 
 <form action="{% url 'groseriesapp:logoutuser' %}" method="post">
   {% csrf_token %}
-  <button type="submit" name="logoutbtn">logout</button>
+  <button type="submit" name="logoutbtn" class="btn btn-link">logout</button>
 </form>
 
 {% else %}
@@ -11,8 +14,8 @@
 
 {% endif %}
 
-<h1>Mercando</h1>
-
+<div class="container">
 {% block content %}
 
 {% endblock %}
+</div>
