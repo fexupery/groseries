@@ -13,10 +13,12 @@
    <ul class="list-group list-group-flush">
    {% for product in value %}
      <li class="list-group-item">
-       <input type="checkbox" name="" value="">
        {{product.name}}<br/>
      {{ product.brand}} - {{ product.presentation}}<br/>
      cantidad: {{ product.quantity}}
+     <br/><br/>
+     <input type="checkbox"  data-toggle="toggle" data-on="Listo" data-off="Falta"
+     data-onstyle="success" data-offstyle="danger">
      </li>
    {% endfor %}
    </ul>
