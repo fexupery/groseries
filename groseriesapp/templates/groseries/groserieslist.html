@@ -2,6 +2,13 @@
 
 
 {% block content %}
+
+<form method="POST" action="{% url 'groseriesapp:addproduct' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Agregar</button>
+</form>
+
 {% for category, value in shopping_list.items %}
 <div class="card" style="width: 16rem;">
     <div class="card-body text-center ">
@@ -28,6 +35,6 @@
 
 
 
-</div></br>
+</div><br/>
 {% endfor %}
 {% endblock %}

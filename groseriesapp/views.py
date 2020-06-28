@@ -4,8 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .models import Category, Product
+from .forms import ProductForm
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def all_groseries(request):
     products = Product.objects.all()
     shopping_list =  {}
@@ -13,9 +15,18 @@ def all_groseries(request):
         if product.category not in shopping_list:
             shopping_list[product.category] = []
         shopping_list[product.category].append(product)
+    return render(request,'groseries/groserieslist.html',{'shopping_list':shopping_list,'form':ProductForm()})
 
-
-    return render(request,'groseries/groserieslist.html',{'shopping_list':shopping_list})
+@login_required
+def addProduct(request):
+    if request.method == 'GET':
+        return render(request,'groseries/newproduct.html',{'form':ProductForm()})
+    else:
+        form = ProductForm(request.POST)
+        newProduct = form.save(commit=False)
+        newProduct.user = request.user
+        newProduct.save()
+        return redirect('groseriesapp:all_groseries')
 
 def signupuser(request):
     if request.method == 'GET':
@@ -47,3 +58,4 @@ def loginuser(request):
         else:
             login(request, user)
             return redirect('groseriesapp:all_groseries')
+

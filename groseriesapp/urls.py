@@ -10,5 +10,6 @@ urlpatterns = [
     path('signupuser',views.signupuser,name='signupuser'),
     path('logoutuser',views.logoutuser,name='logoutuser'),
     path('loginuser',views.loginuser,name='loginuser'),
+    path('addproduct', views.addProduct, name='addproduct'),
 
 ]
